@@ -4,15 +4,20 @@ from fastapi.responses import HTMLResponse
 
 import os
 import json
-import pandas as pd
 
 from .models import (
    request_model,
 )
 
 
-# from .dependencies import ()
-# from .settings import ()
+from .dependencies import (
+    gen_password,
+    get_pass_groups,
+)
+
+from .settings import (
+    char_dict
+)
 
 router = APIRouter()
 
@@ -28,3 +33,12 @@ def root():
         </body>
     </html>
    """
+
+
+@router.post("/generate_pass", summary="Se encarga de generar una contraseña con un nivel mas de seguridad apartir de una frase", tags=['Generador Contraseñas'] )
+def generate_pass(pwd: str):
+
+    results = [ gen_password(pwd, char_dict, 0) for _ in range(1000) ] 
+    response = get_pass_groups(results, pwd) 
+
+    return {"data": response}

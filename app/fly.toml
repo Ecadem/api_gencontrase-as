@@ -1,6 +1,6 @@
-# fly.toml file generated for gencontrasenas on 2022-12-26T23:57:09-05:00
+# fly.toml file generated for genpass on 2023-01-06T23:07:56-05:00
 
-app = "gencontrasenas"
+app = "genpass"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
